@@ -4,8 +4,8 @@
 <head>
     <title> 爱心代码 </title>
     <meta charset="utf-8">
-         <audio autoplay="autopaly" loop="loop" id="audios">
-        <source src="http://m701.music.126.net/20230125234718/cb8dc22f8f96548991dd59aed4dd5c5d/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/18655620342/b1eb/3610/c01c/420b4303cf8d9bb72c25217db78cd671.mp3" />
+    <audio autoplay="autopaly" loop="loop" id="audios">
+        <source src="https://data.jstools.net/joy127/202101/13/20585ffeee81d7dc2209626.mp3" />
     </audio>
     <style>
         html,
@@ -273,29 +273,13 @@
             }, 10);
         })(document.getElementById('pinkboard'));
     </script>
-     <script>
-    //音乐自动播放
-    $(document).ready(function() {
-        autoPlayMusic();
-        audioAutoPlay();
-    });
-
-    function audioAutoPlay() {
-        var audio = document.getElementById('bg-music');
-        audio.play();
-        document.addEventListener("WeixinJSBridgeReady", function() {
-            audio.play();
-        }, false);
-    }
-    // 音乐播放
+    <script>
     function autoPlayMusic() {
-        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
         function musicInBrowserHandler() {
             musicPlay(true);
             document.body.removeEventListener('touchstart', musicInBrowserHandler);
         }
         document.body.addEventListener('touchstart', musicInBrowserHandler);
-        // 自动播放音乐效果，解决微信自动播放问题
         function musicInWeixinHandler() {
             musicPlay(true);
             document.addEventListener("WeixinJSBridgeReady", function() {
@@ -316,6 +300,8 @@
         }
     }
 </script>
+
+
 
 </body>
 
