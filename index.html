@@ -4,13 +4,9 @@
 <head>
     <title> 爱心代码（本技术由不考川大不改名提供） </title>
     <meta charset="utf-8">
-    <audio 
-    autoplay="autoplay" 
-    loop="loop" 
-    preload="auto"
-    src="http://m801.music.126.net/20230125224315/7c56b9abc4d84b60ad3e4787cdfb1914/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/18655620342/b1eb/3610/c01c/420b4303cf8d9bb72c25217db78cd671.mp3">
+    <audio autoplay="autopaly" loop="loop" id="audios">
+        <source src="http://m701.music.126.net/20230125234718/cb8dc22f8f96548991dd59aed4dd5c5d/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/18655620342/b1eb/3610/c01c/420b4303cf8d9bb72c25217db78cd671.mp3" />
     </audio>
-
     <style>
         html,
         body {
@@ -276,7 +272,59 @@
                 render();
             }, 10);
         })(document.getElementById('pinkboard'));
+    document.addEventListener('touchstart', function() {
+    document.getElementById('audios').play()
+})
+    document.addEventListener('click', function() {
+    document.getElementById('audios').play()
+})
     </script>
+    
+<script>
+    //音乐自动播放
+    $(document).ready(function() {
+        autoPlayMusic();
+        audioAutoPlay();
+    });
+
+    function audioAutoPlay() {
+        var audio = document.getElementById('bg-music');
+        audio.play();
+        document.addEventListener("WeixinJSBridgeReady", function() {
+            audio.play();
+        }, false);
+    }
+    // 音乐播放
+    function autoPlayMusic() {
+        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+        function musicInBrowserHandler() {
+            musicPlay(true);
+            document.body.removeEventListener('touchstart', musicInBrowserHandler);
+        }
+        document.body.addEventListener('touchstart', musicInBrowserHandler);
+        // 自动播放音乐效果，解决微信自动播放问题
+        function musicInWeixinHandler() {
+            musicPlay(true);
+            document.addEventListener("WeixinJSBridgeReady", function() {
+                musicPlay(true);
+            }, false);
+            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+    }
+
+    function musicPlay(isPlay) {
+        var media = document.querySelector('#bg-music');
+        if (isPlay && media.paused) {
+            media.play();
+        }
+        if (!isPlay && !media.paused) {
+            media.pause();
+        }
+    }
+</script>
+
+
 
 
 
